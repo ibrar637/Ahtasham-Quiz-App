@@ -1,0 +1,225 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+    #mathop{
+      width: 80px;
+    }
+</style>
+</head>
+
+<body>
+   <h1>Welcome to coding Question</h1>
+   <span>Total question you attempt   :</span>
+   <span id="attempt"></span><br>
+   <span>Total Correct Answer   :</span>
+   <span id="correct"></span><br>
+   <span>Total Wrong Answer   :</span>
+   <span id="wrong"></span><br> 
+   <span>Your score    : </span>
+   <span id="score"></span><br>
+
+    <div id="container">
+        <span>Operations </span>
+            <select name="operations" id="mathop">
+            <option value="0">Operaiton</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="/">/</option>
+            <option value="*">*</option>
+        </select>
+    </div>
+    <span1 id="op1"></span1>
+    <span1 id="oper"></span1>
+    <span1 id="op2"></span1><br>
+    <button id="numgen" onclick="checker()">generate Number</button>
+    <label for="numgen" id="msg"></label>
+    <br>
+    <input type="text" id="input" placeholder="Enter your Answer"><span>Actual value  :</span>
+    <label for="input" id="msg2"></label><br>
+    <button id="numgen" onclick="compute()">Check Answer</button>
+    <label for="input" id="msg3"></label><br>
+   <button id="NxtQs" onclick="checker()">Next Question</button>
+    <div>
+
+    </div>
+    <script>
+     let val11=null;
+     let val22=null;
+     let val33=null;
+     let totalquestion=5;
+     let totalsolve=0;
+     let correctanswer=0;
+     let wronganswer=0;
+
+     let score=document.getElementById("score")
+     let correct=document.getElementById("correct")
+     let wrong=document.getElementById("wrong")
+        function checker(){
+            let val1 = document.getElementById('op1');
+            op=document.getElementById('oper')
+            let val2 = document.getElementById('op2');
+            let msg2= document.getElementById('msg2');
+            let msg3= document.getElementById('msg3');
+            let input= document.getElementById('input');
+            msg2.innerHTML="";
+            msg3.innerHTML="";
+            input.value="";
+
+            let oper= document.getElementById('mathop');
+            if (oper.value !== "0") {
+            let min = 1;
+            let max = 10;
+            
+            val11 = Math.floor(Math.random() * (max - min + 1)) + min;
+            val1.innerHTML=val11
+            op.innerHTML=oper.value;
+            val22=Math.floor(Math.random() * (max - min + 1)) + min;
+            val2.innerHTML=val22
+            let msg= document.getElementById('msg');
+            msg.innerHTML=""
+            }
+            else{
+                let val1 = document.getElementById('op1');
+                val1.innerHTML=""
+                op=document.getElementById('oper')
+                op.innerHTML=""
+                let val2 = document.getElementById('op2');
+               val2.innerHTML=""
+               let msg= document.getElementById('msg');
+               msg.innerHTML="Must Select operation"
+            }
+        }
+        function compute(){
+            let input= document.getElementById('input');
+            if(input.value!==""){
+                let msg2= document.getElementById('msg2');
+                op=document.getElementById('mathop').value;
+                if(op=="+"){
+                    //let val1 = document.getElementById('op1').value;
+                    //let val2 = document.getElementById('op2').value;
+                    val33=val11+val22
+                    msg2.innerHTML= val33;
+                    if(compare()){
+                            msg3.innerHTML="Correct Ansewer";
+                            scoreincrease();
+                        }
+                        else{
+                            msg3.innerHTML="Wrong Answer";
+                            scoredecrease();
+                        }
+                }
+                if(op==="-"){
+                    //let val1 = document.getElementById('op1').value;
+                    //let val2 = document.getElementById('op2').value;
+                    val33=val11-val22
+                    msg2.innerHTML= val33
+                    if(compare()){
+                            msg3.innerHTML="Correct Ansewer";
+                            scoreincrease();
+                        }
+                        else{
+                            msg3.innerHTML="Wrong Answer";
+                            scoredecrease();
+                        }
+                }
+                if(op==="*"){
+                    //let val1 = document.getElementById('op1').value;
+                    //let val2 = document.getElementById('op2').value;
+                    val33=val11*val22
+                    msg2.innerHTML= val33
+                    if(compare()){
+                            msg3.innerHTML="Correct Ansewer";
+                            scoreincrease();
+                        }
+                        else{
+                            msg3.innerHTML="Wrong Answer";
+                            scoredecrease();
+                        }
+                }
+                if(op==="/"){
+                   // let val1 = document.getElementById('op1').value;
+                   // let val2 = document.getElementById('op2').value;
+                    if (val22!==0){
+                        val33=val11/val22
+                        msg2.innerHTML= val33
+                        if(compare()){
+                            msg3.innerHTML="Correct Ansewer";
+                            scoreincrease();
+                        }
+                        else{
+                            msg3.innerHTML="Wrong Answer";
+                            scoredecrease();
+                        }
+                    }
+                    else{
+                        msg2.innerHTML= "some mistake in divide"
+                    }
+                    
+                }
+                //msg2.innerHTML=input.value
+            }
+            else{
+                let msg2= document.getElementById('msg2');
+                msg2.innerHTML="Enter numneric data";
+            }
+          
+        }
+        function compare(){
+            val44=document.getElementById("input").value
+            let numValue44 = parseFloat(val44);
+            let msg3= document.getElementById('msg3');
+            if(numValue44===val33){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+          }
+          let =null;
+     let =null;
+     let =null;
+          function scoreincrease(){
+            totalsolve=totalsolve+1;
+            correctanswer=correctanswer+1;
+           attemp= document.getElementById("attempt");
+           attemp.innerHTML=totalsolve;
+           totalscore();
+          }
+          function scoredecrease(){
+            totalsolve=totalsolve+1;
+            wronganswer=wronganswer+1;
+            attemp= document.getElementById("attempt");
+           attemp.innerHTML=totalsolve;
+           totalscore();
+
+}
+          function totalscore(){
+            correct=document.getElementById("correct");
+            correct.innerHTML=correctanswer;
+            wrong=document.getElementById("wrong");
+            wrong.innerHTML=wronganswer;
+            let val1 = document.getElementById('op1');
+            let op=document.getElementById('oper')
+            let val2 = document.getElementById('op2');
+            let oper= document.getElementById('mathop');
+            let score=document.getElementById("score");
+            score.innerHTML=`${correctanswer}/${totalsolve}`;
+            val1.innerHTML="";
+            op.innerHTML="";
+            val2.innerHTML="";
+            oper.value="0";
+          }
+
+function runprogram(){
+    totalsolve=totalsolve+1;
+}
+
+    </script>
+</body>
+</html>

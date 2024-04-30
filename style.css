@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+span {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 5px;
+}
+
+#mathop {
+    width: 100px;
+    margin-bottom: 10px;
+    background-color:#45a049;
+    color: rgba(255, 255, 255, 0.897);
+}
+
+
+input[type="text"] {
+    width: 110px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #45a049;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+#msg2{
+    margin-left: 20px;
+}
+#msg3{
+    margin-left: 40px;
+}

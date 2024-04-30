@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instant Math Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #quiz {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Instant Math Quiz</h1>
+    <p>Select an operation: 
+        <select id="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+        </select>
+    </p>
+    <div id="quiz"></div>
+    <button onclick="generateQuestion()">Next Question</button>
+    <button onclick="endQuiz()">End Quiz</button>
+
+    <script>
+        let correctAnswers = 0;
+        let totalQuestions = 0;
+
+        function generateQuestion() {
+            let operation = document.getElementById('operation').value;
+            let num1 = Math.floor(Math.random() * 10);
+            let num2 = Math.floor(Math.random() * 10);
+            if (operation === '/' && num2 === 0) num2 = 1; // Avoid division by zero
+
+            let quizDiv = document.getElementById('quiz');
+            quizDiv.innerHTML = `<p>${num1} ${operation} ${num2} = <input id="answer" type="number"></p>
+                                 <button onclick="checkAnswer(${num1}, ${num2}, '${operation}')">Submit Answer</button>`;
+        }
+
+        function checkAnswer(num1, num2, operation) {
+            let userAnswer = document.getElementById('answer').value;
+            let correctAnswer;
+            switch (operation) {
+                case '+':
+                    correctAnswer = num1 + num2;
+                    break;
+                case '-':
+                    correctAnswer = num1 - num2;
+                    break;
+                case '*':
+                    correctAnswer = num1 * num2;
+                    break;
+                case '/':
+                    correctAnswer = num1 / num2;
+                    break;
+            }
+            if (userAnswer == correctAnswer) {
+                alert('Correct!');
+                correctAnswers++;
+            } else {
+                alert(`Incorrect. The correct answer is ${correctAnswer}.`);
+            }
+            totalQuestions++;
+        }
+
+        function endQuiz() {
+            let score = (correctAnswers / totalQuestions) * 100;
+            alert(`Quiz ended. Your score is ${score.toFixed(2)}%.`);
+        }
+    </script>
+</body>
+</html>
